@@ -17,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
 
     private String items_name [] = {"Read Scripture", "Make Assignment", "Call bank", "Finish app"};
     private String items_date [] = {"17/06/2021", "22/06/2021", "25/07/2021", "01/08/2021"};
+    private String doc_name [] = {"Doctor Allcome", "Doctor Pleaseno"};
+    private String doc_date [] = {"25/12/2021", "16/07/2021"};
+    private String meeting_name [] = {"Scrum", "Cry Session", "Unemployment Office"};
+    private String meeting_date [] = {"24/06/2021", "22/06/2021", "25/06/2021"};
+    private String meeting_time [] = {"20:00", "16:19", "09:00"};
 
 
     @Override
@@ -37,10 +42,37 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_homework, items_name);
         listview1.setAdapter(adapter);
 
+        ArrayAdapter <String> adapter2 = new ArrayAdapter<String>(this, R.layout.list_item_2, doc_name);
+        listview2.setAdapter(adapter2);
+
+        ArrayAdapter <String> adapter3 = new ArrayAdapter<String>(this, R.layout.list_item_2, meeting_name);
+        listview3.setAdapter(adapter3);
+
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 textview1.setText(listview1.getItemAtPosition(position) + " Due:\n" + items_date[position] );
+                //That is a testing to see if the Android Studio is sending the news to the repository
+
+            }
+        });
+
+        // for doc appointments list
+        listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                textview2.setText(listview2.getItemAtPosition(position) + " at:\n" + doc_date[position] );
+                //That is a testing to see if the Android Studio is sending the news to the repository
+
+            }
+        });
+
+        // for meeting
+        listview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                textview3.setText(listview3.getItemAtPosition(position) + " at:\n" + meeting_date[position] +
+                        "\nat: " + meeting_time[position]);
                 //That is a testing to see if the Android Studio is sending the news to the repository
 
             }
