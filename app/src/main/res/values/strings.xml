@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Curso</string>
+    <string name="text_view_main">Homework</string>
+    <string name="buttom">Add</string>
+    <string name="text_view_main2">Doctor</string>
+    <string name="text_view_main3">Meeting</string>
+    <string name="text_view_main4">Other</string>
+</resources>
