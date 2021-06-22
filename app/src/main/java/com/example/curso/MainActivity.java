@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                textview1.setText(listview1.getItemAtPosition(position) + "To be done :" + items_date[position] );
+                textview1.setText(listview1.getItemAtPosition(position) + " Due:\n" + items_date[position] );
                 //That is a testing to see if the Android Studio is sending the news to the repository
 
             }
