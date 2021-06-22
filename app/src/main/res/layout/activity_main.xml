@@ -54,7 +54,7 @@
     <ListView
         android:id="@+id/listView2"
         android:layout_width="270dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
     <ListView
         android:id="@+id/listView3"
         android:layout_width="270dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,7 +94,7 @@
     <ListView
         android:id="@+id/listView4"
         android:layout_width="270dp"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
