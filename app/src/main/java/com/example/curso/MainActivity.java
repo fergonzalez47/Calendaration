@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private String meeting_name [] = {"Scrum", "Cry Session", "Unemployment Office"};
     private String meeting_date [] = {"24/06/2021", "22/06/2021", "25/06/2021"};
     private String meeting_time [] = {"20:00", "16:19", "09:00"};
+
 
 
     @Override
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 textview1.setText(listview1.getItemAtPosition(position) + " Due:\n" + items_date[position] );
                 //That is a testing to see if the Android Studio is sending the news to the repository
 
+
             }
         });
 
@@ -77,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void Add(View view) {
+        Intent AddActivity = new Intent(this, edit_activity.class);
+        startActivity(AddActivity);
 
     }
 }

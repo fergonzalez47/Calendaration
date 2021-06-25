@@ -28,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -35,12 +36,15 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:background="#29BC18"
-        android:text="@string/buttom"
+        android:onClick="Add"
+        android:text="@string/buttomAdd"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView4" />
-
+        app:layout_constraintTop_toBottomOf="@+id/listView4"
+        app:layout_constraintVertical_bias="0.498" />
 
     <ListView
         android:id="@+id/listView1"

@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Curso</string>
     <string name="text_view_main">Homework</string>
-    <string name="buttom">Add</string>
+    <string name="buttomAdd">Add</string>
     <string name="text_view_main2">Doctor</string>
     <string name="text_view_main3">Meeting</string>
     <string name="text_view_main4">Other</string>
+    <string name="Text_name_editAct">name</string>
+    <string name="Text_type_editAct">Type</string>
+    <string name="Text_date_editAct">Date</string>
+    <string name="Text_hour_editAct">Time</string>
+    <string name="Text_location_editAct">Location</string>
+    <string name="buttom_save_AddAct">Save</string>
+    <string name="buttom_cancel_AddAct">Cancel</string>
 </resources>
