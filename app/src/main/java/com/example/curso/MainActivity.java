@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_homework, items_name);
         listview1.setAdapter(adapter);
 
+
         ArrayAdapter <String> adapter2 = new ArrayAdapter<String>(this, R.layout.list_item_2, doc_name);
         listview2.setAdapter(adapter2);
 
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         listview1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                textview1.setText(listview1.getItemAtPosition(position) + " Due:\n" + items_date[position] );
+                textview1.setText(listview1.getItemAtPosition(position) + " Due:" + items_date[position] );
                 //That is a testing to see if the Android Studio is sending the news to the repository
 
 
@@ -67,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         listview2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                textview2.setText(listview2.getItemAtPosition(position) + " at:\n" + doc_date[position] );
+                textview2.setText(listview2.getItemAtPosition(position) + " at: " + doc_date[position] );
                 //That is a testing to see if the Android Studio is sending the news to the repository
 
             }
@@ -77,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
         listview3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                textview3.setText(listview3.getItemAtPosition(position) + " at:\n" + meeting_date[position] +
-                        "\nat: " + meeting_time[position]);
+                textview3.setText(listview3.getItemAtPosition(position) + " at: " + meeting_date[position] +
+                        " at: " + meeting_time[position]);
                 //That is a testing to see if the Android Studio is sending the news to the repository
 
             }
