@@ -88,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
         textview1 = (TextView)findViewById(R.id.textView1);
         textview2 = (TextView)findViewById(R.id.textView2);
         textview3 = (TextView)findViewById(R.id.textView3);
-        textview4 = (TextView)findViewById(R.id.textView4);
+        //textview4 = (TextView)findViewById(R.id.textView4);
         listview1 = (ListView)findViewById(R.id.listView1);
         listview2 = (ListView)findViewById(R.id.listView2);
         listview3 = (ListView)findViewById(R.id.listView3);
-        listview4 = (ListView)findViewById(R.id.listView4);
+        //listview4 = (ListView)findViewById(R.id.listView4);
 
         ArrayAdapter <String> adapter = new ArrayAdapter<String>(this, R.layout.list_item_homework, homeworkName);
         listview1.setAdapter(adapter);
