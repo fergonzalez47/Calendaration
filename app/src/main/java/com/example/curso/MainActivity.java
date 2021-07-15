@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         listview1.setAdapter(adapter);
 
 
-        ArrayAdapter <String> adapter2 = new ArrayAdapter<String>(this, R.layout.list_item_2, doctorAppointmentName);
+        ArrayAdapter <String> adapter2 = new ArrayAdapter<String>(this, R.layout.list_item_4, doctorAppointmentName);
         listview2.setAdapter(adapter2);
 
         ArrayAdapter <String> adapter3 = new ArrayAdapter<String>(this, R.layout.list_item_2, meetingName);

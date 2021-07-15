@@ -32,8 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/name_input"
                 android:inputType="textPersonName"
-                android:text="@string/name_input"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -54,8 +54,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/type_input"
                 android:inputType="textPersonName"
-                android:text="@string/type_input"
                 android:textSize="16sp" />
         </TableRow>
 
@@ -116,8 +116,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:hint="@string/location_input"
                 android:inputType="textPersonName"
-                android:text="@string/location_input"
                 android:textSize="16sp" />
         </TableRow>
     </TableLayout>

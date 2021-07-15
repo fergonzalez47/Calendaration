@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,6 +25,7 @@ public class create_activity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TimePickerDialog.OnTimeSetListener mHourSetListener;
     int hour, minutes;
+    EditText inputName, inputType, inputLocation;
 
 
     @Override
@@ -33,6 +36,9 @@ public class create_activity extends AppCompatActivity {
 
         mDisplayDate = (TextView)findViewById(R.id.ea_input_date);
         mDisplayHour = (TextView)findViewById(R.id.ea_input_hour);
+        inputName = (EditText)findViewById(R.id.ea_name_input);
+        inputType = (EditText)findViewById(R.id.ea_type_input);
+        inputLocation = (EditText)findViewById(R.id.ea_input_location);
 
         //***************************************************
 
@@ -86,9 +92,39 @@ public class create_activity extends AppCompatActivity {
     }
     // Method to call receive the main activity
 
+    public boolean validate() {
+        boolean returningBol = true;
+        String fieldName = inputName.getText().toString();
+        String fieldType = inputType.getText().toString();
+        String fieldLocation = inputLocation.getText().toString();
+
+        if (fieldName.isEmpty()) {
+            returningBol = false;
+            inputName.setError("You must fill this field");
+        }
+        if (fieldType.isEmpty()) {
+            returningBol = false;
+            inputType.setError("You must fill this field");
+        }
+        if (fieldLocation.isEmpty()) {
+            returningBol = false;
+            inputLocation.setError("You must fill this field");
+        }
+        return returningBol;
+    }
+
     public void Return(View view) {
         Intent goBack = new Intent(this, MainActivity.class);
         startActivity(goBack);
+
+    }
+
+    public void Create(View view) {
+        if (validate()) {
+            Return(view);
+
+            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }
