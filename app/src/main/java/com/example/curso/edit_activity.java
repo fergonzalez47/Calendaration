@@ -58,7 +58,7 @@ public class edit_activity extends AppCompatActivity {
         meetingName = (TextView)findViewById(R.id.ea_name_input);
         location = (TextView)findViewById(R.id.ea_input_location);
        // idMeeting = (TextView)findViewById(R.id.ea_input_date);
-       // typeMeeting = (TextView)findViewById(R.id.ea_input_hour);
+       // inputType = (Spinner)findViewById(R.id.ea_type_spinner);
 
         // Get the Intent that started this activity and extract the string
         //This is the new content, only for edit view
@@ -83,6 +83,10 @@ public class edit_activity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
+        if (typeMeeting != null) {
+            int spinnerPosition = adapter.getPosition(typeMeeting);
+            spinner.setSelection(spinnerPosition);
+        }
         //**********************************
         // *****************
 
@@ -206,6 +210,7 @@ public class edit_activity extends AppCompatActivity {
                     item.meetingLocation = location.getText().toString();
                     item.meetingDate = mDisplayDate.getText().toString();
                     item.meetingTime = mDisplayHour.getText().toString();
+                    item.itemType =  spinner.getSelectedItem().toString();
                 }
 
             }
