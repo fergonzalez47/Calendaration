@@ -137,13 +137,11 @@ public class create_activity extends AppCompatActivity {
             returningBol = false;
 
             mDisplayDate.setError("You must fill this field");
-
         }
         if (timeField.equals("Hour")) {
             returningBol = false;
 
             mDisplayHour.setError("You must fill this field");
-
         }
         return returningBol;
     }

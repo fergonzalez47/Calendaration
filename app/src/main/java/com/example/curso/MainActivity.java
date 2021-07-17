@@ -32,14 +32,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String MEETING_TIME = "com.example.curso.TIME";
     public static final String ITEM_TYPE = "com.example.curso.TYPE";
 
-    private String items_name [] = {"Read Scripture", "Make Assignment", "Call bank", "Finish app"};
-    private String items_date [] = {"17/06/2021", "22/06/2021", "25/07/2021", "01/08/2021"};
-    private String doc_name [] = {"Doctor Allcome", "Doctor Pleaseno"};
-    private String doc_date [] = {"25/12/2021", "16/07/2021"};
-    private String meeting_name [] = {"Scrum", "Cry Session", "Unemployment Office"};
-    private String meeting_date [] = {"24/06/2021", "22/06/2021", "25/06/2021"};
-    private String meeting_time [] = {"20:00", "16:19", "09:00"};
-    private String jsonData = null;
+
 
 
     @Override
@@ -47,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Loading Json File
-       // String jsonFileString2 = utils.getJson(getApplicationContext(), "todoListNew.json");
 
         String jsonFileString = utils.getJson(getApplicationContext(), "todoListNew.json");
 
@@ -65,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         ArrayList <String> doctorAppointmentName = new ArrayList<String> () ;
         ArrayList<ToDo> meeting  =new ArrayList<ToDo> () ;;
         ArrayList <String> meetingName = new ArrayList<String> () ;
-
-        if(jsonFileString != null) {
+        int val2 = 100;
+        if(records != null) {
             for (ToDo item : records) {
                 switch (item.itemType) {
 

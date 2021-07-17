@@ -248,23 +248,22 @@ public class edit_activity extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.ea_type_spinner);
         String jsonFileString = utils.getJson(getApplicationContext(), "todoListNew.json");
         Type listToDo = new TypeToken<ArrayList<ToDo>>() { }.getType();
-        ArrayList<ToDo> records =  new ArrayList<ToDo>();
-        int lastId = 1;
-        if(jsonFileString.length() > 0) {
-            records = gson.fromJson(jsonFileString, listToDo);
-            for (ToDo item : records) {
+        ArrayList<ToDo> records =  gson.fromJson(jsonFileString, listToDo);
 
-                if(item.Id == idMeeting ){
-                    records.remove(item);
+        int lastId = 1;
+        if(records != null) {
+
+                for (ToDo item : records) {
+
+                    if (item.Id == idMeeting) {
+                        records.remove(item);
+                    }
+
                 }
 
-            }
         }
 
 
-        //
-        ToDo newItem = new ToDo(lastId, itemName, spinner.getSelectedItem().toString(), locationVal, dateVal,timeVal);
-        // records.add(newItem);
         String filePath= "todoListNew.json";
         String todoData = gson.toJson(records);
 
