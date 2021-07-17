@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
     private ListView listview1, listview2, listview3, listview4;
     public static final int ID = 0;
     public static final String ITEM_NAME = "com.example.curso.ITEM_NAME";
-    public static final String LOCATION = "com.example.myfirstapp.LOCATION";
-    public static final String MEETING_DATE = "com.example.myfirstapp.DATE";
-    public static final String MEETING_TIME = "com.example.myfirstapp.TIME";
-    public static final int ITEM_TYPE = 0;
+    public static final String LOCATION = "com.example.curso.LOCATION";
+    public static final String MEETING_DATE = "com.example.curso.DATE";
+    public static final String MEETING_TIME = "com.example.curso.TIME";
+    public static final String ITEM_TYPE = "com.example.curso.TYPE";
 
     private String items_name [] = {"Read Scripture", "Make Assignment", "Call bank", "Finish app"};
     private String items_date [] = {"17/06/2021", "22/06/2021", "25/07/2021", "01/08/2021"};
@@ -47,11 +47,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Loading Json File
-        String jsonFileString = utils.getJsonFromAssets(getApplicationContext(), "todolist.json");
+       // String jsonFileString2 = utils.getJson(getApplicationContext(), "todoListNew.json");
+
+        String jsonFileString = utils.getJson(getApplicationContext(), "todoListNew.json");
+
+
+
         Gson gson = new Gson();
         Type listToDo = new TypeToken<ArrayList<ToDo>>() { }.getType();
         ArrayList<ToDo> records = gson.fromJson(jsonFileString, listToDo);
         Log.i("data", jsonFileString);
+       // Log.i("data", jsonFileString);
         //Read the arraylist to filter the data for each type of meeting
         ArrayList<ToDo> homework = new ArrayList<ToDo> () ;
         ArrayList <String> homeworkName = new ArrayList<String> () ;
@@ -59,28 +65,30 @@ public class MainActivity extends AppCompatActivity {
         ArrayList <String> doctorAppointmentName = new ArrayList<String> () ;
         ArrayList<ToDo> meeting  =new ArrayList<ToDo> () ;;
         ArrayList <String> meetingName = new ArrayList<String> () ;
-        for(ToDo item : records) {
-            switch (item.itemType){
 
-                case 1:
-                    homework.add(item);
-                    //Create the list for the listview, with the names only
-                    homeworkName.add(item.itemName);
-                    break;
-                case 2:
-                    doctorAppointment.add(item);
-                    //Create the list for the listview, with the names only
-                    doctorAppointmentName.add(item.itemName);
-                    break;
-                case 3:
-                    meeting.add(item);
-                    //Create the list for the listview, with the names only
-                    meetingName.add(item.itemName);
-                    break;
+        if(jsonFileString != null) {
+            for (ToDo item : records) {
+                switch (item.itemType) {
+
+                    case "Homework":
+                        homework.add(item);
+                        //Create the list for the listview, with the names only
+                        homeworkName.add(item.itemName);
+                        break;
+                    case "Doctor":
+                        doctorAppointment.add(item);
+                        //Create the list for the listview, with the names only
+                        doctorAppointmentName.add(item.itemName);
+                        break;
+                    case "Meetings":
+                        meeting.add(item);
+                        //Create the list for the listview, with the names only
+                        meetingName.add(item.itemName);
+                        break;
+                }
             }
+
         }
-
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
@@ -139,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     /** Called when the user taps an item */
-    public void editItem(View view ,int Id, String itemName, int itemType, String meetingLocation , String meetingDate, String meetingTime ) {
+    public void editItem(View view ,int Id, String itemName, String itemType, String meetingLocation , String meetingDate, String meetingTime ) {
         Intent intent = new Intent(this, edit_activity.class);
         intent.putExtra(ITEM_NAME, itemName);
         intent.putExtra(LOCATION, meetingLocation);

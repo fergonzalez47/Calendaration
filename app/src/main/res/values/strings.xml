@@ -12,9 +12,16 @@
     <string name="Text_location_editAct">Location</string>
     <string name="buttom_save_AddAct">Save</string>
     <string name="buttom_cancel_AddAct">Cancel</string>
+    <string name="buttom_save_DelAct">Delete</string>
     <string name="input_calendar">Date</string>
     <string name="name_input">Enter the name</string>
     <string name="input_hour">Hour</string>
     <string name="location_input">Location</string>
     <string name="type_input">Reminder type</string>
+    <string-array name="types_array">
+        <item>Homework</item>
+        <item>Doctor</item>
+        <item>Meetings</item>
+
+    </string-array>
 </resources>

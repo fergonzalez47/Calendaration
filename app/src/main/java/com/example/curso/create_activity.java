@@ -8,14 +8,25 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class create_activity extends AppCompatActivity {
@@ -37,10 +48,18 @@ public class create_activity extends AppCompatActivity {
         mDisplayDate = (TextView)findViewById(R.id.ea_input_date);
         mDisplayHour = (TextView)findViewById(R.id.ea_input_hour);
         inputName = (EditText)findViewById(R.id.ea_name_input);
-        inputType = (EditText)findViewById(R.id.ea_type_input);
+       // inputType = (EditText)findViewById(R.id.ea_type_input);
         inputLocation = (EditText)findViewById(R.id.ea_input_location);
-
-        //***************************************************
+        Spinner spinner = (Spinner) findViewById(R.id.ea_type_spinner);
+    // Create an ArrayAdapter using the string array and a default spinner layout
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                    R.array.types_array, android.R.layout.simple_spinner_item);
+    // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    // Apply the adapter to the spinner
+            spinner.setAdapter(adapter);
+        //**********************************
+        // *****************
 
 
         mDisplayHour.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +95,7 @@ public class create_activity extends AppCompatActivity {
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         create_activity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month, day);
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth, mDateSetListener, year, month , day);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
             }
@@ -85,6 +104,7 @@ public class create_activity extends AppCompatActivity {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month = month + 1;
                 String date = dayOfMonth + "/" + month + "/" + year;
                 mDisplayDate.setText(date);
             }
@@ -95,20 +115,35 @@ public class create_activity extends AppCompatActivity {
     public boolean validate() {
         boolean returningBol = true;
         String fieldName = inputName.getText().toString();
-        String fieldType = inputType.getText().toString();
-        String fieldLocation = inputLocation.getText().toString();
+       // String fieldType = inputType.getText().toString();
 
+
+        String fieldLocation = inputLocation.getText().toString();
+        String dateField = mDisplayDate.getText().toString();
+        String timeField = mDisplayHour.getText().toString();
         if (fieldName.isEmpty()) {
             returningBol = false;
+
             inputName.setError("You must fill this field");
         }
-        if (fieldType.isEmpty()) {
-            returningBol = false;
-            inputType.setError("You must fill this field");
-        }
+
         if (fieldLocation.isEmpty()) {
             returningBol = false;
+
             inputLocation.setError("You must fill this field");
+
+        }
+        if (dateField.equals("Date")) {
+            returningBol = false;
+
+            mDisplayDate.setError("You must fill this field");
+
+        }
+        if (timeField.equals("Hour")) {
+            returningBol = false;
+
+            mDisplayHour.setError("You must fill this field");
+
         }
         return returningBol;
     }
@@ -118,12 +153,51 @@ public class create_activity extends AppCompatActivity {
         startActivity(goBack);
 
     }
+    public void Save(){
+        Toast.makeText(create_activity.this,  " Saved" , Toast.LENGTH_LONG).show();
+        Gson gson = new Gson();
+        Spinner spinner = (Spinner) findViewById(R.id.ea_type_spinner);
+        String jsonFileString = utils.getJson(getApplicationContext(), "todoListNew.json");
+        Type listToDo = new TypeToken<ArrayList<ToDo>>() { }.getType();
+        ArrayList<ToDo> records =  new ArrayList<ToDo>();
+        int lastId = 1;
+        if(jsonFileString.length() > 0) {
+            records = gson.fromJson(jsonFileString, listToDo);
+            lastId =records.size() + 1;
+        }else{
+            records =  new ArrayList<ToDo>();
+        }
+        //
+        ToDo newItem = new ToDo(lastId, inputName.getText().toString(), spinner.getSelectedItem().toString(), inputLocation.getText().toString(),mDisplayDate.getText().toString(), mDisplayHour.getText().toString());
+        records.add(newItem);
+        String filePath= "todoListNew.json";
+        String todoData = gson.toJson(records);
 
+        try{
+            //Get your FilePath and use it to create your File
+            String yourFilePath = this.getFilesDir() + "/" + filePath;
+            File yourFile = new File(yourFilePath);
+//Create your FileOutputStream, yourFile is part of the constructor
+            FileOutputStream fileOutputStream = new FileOutputStream(yourFile);
+//Convert your JSON String to Bytes and write() it
+            fileOutputStream.write(todoData.getBytes());
+//Finally flush and close your FileOutputStream
+            fileOutputStream.flush();
+            fileOutputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void Create(View view) {
-        if (validate()) {
-            Return(view);
 
-            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+        if (validate()) {
+            Save();
+            Return(view);
+        }else{
+            Toast.makeText(create_activity.this,  " Error, fill all the form" , Toast.LENGTH_LONG).show();
         }
 
     }
